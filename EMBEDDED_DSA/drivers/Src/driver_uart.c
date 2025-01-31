@@ -21,11 +21,6 @@ void uart2_init(void)
     UART2->CR1 |= (1 << 13);// enable uart periph
 }
 
-void uart2_write_byte(uint8_t data)
-{
-	while(!(UART2->SR & (1 << 7)));
-    UART2->DR = data;
-}
 
 void uart2_init_pins(void)
 {
@@ -40,4 +35,20 @@ void uart2_init_pins(void)
     UartPin.GPIO_PinConfig.GPIO_PinAltFunMode = PA2_ALTFN_UART2_TX;
 
     GPIO_Init(&UartPin);
+}
+
+
+int uart2_write(int ch)
+{
+	while(!(UART2->SR & UART_FLAG_TXE));
+    UART2->DR = ch;
+
+    return ch;
+}
+
+int uart2_read(void)
+{
+	while(!(UART2->SR & UART_FLAG_RXNE));
+    return UART2->DR;
+
 }
