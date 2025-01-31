@@ -2,21 +2,42 @@
 #include <stdio.h>
 #include <system.h>
 
-uint64_t ticks = 0;
+struct __FILE {int handle;};
+FILE __stdin = {0};
+FILE __stdout = {1};
+FILE __stderr = {2};
+
+int fgetc(FILE *f)
+{
+    int c;
+
+    c = uart2_read();
+    if(c == '\r')
+    {
+        uart2_write(c);
+        c = '\n';
+    }
+    uart2_write(c);
+    return c;
+}
+
+int fputc(int c, FILE *f)
+{
+    return uart2_write(c);
+}
+
+
+int n;
+char str[80];
 
 int main(void)
  {
     system_init();
 
-    uint64_t start_time = system_get_ticks();
-
     while (1)
     {   
-        if((system_get_ticks() - start_time) >= 3000)
-        {
-            printf("DSA Test\n\r");
-            GPIO_ToggleOutputPin(LED_PORT, LED_PIN);
-            start_time = system_get_ticks();
-        }
+        printf("Please enter a number:\r\n");
+        scanf("%d", &n);
+        printf("the number: %d\r\n", n);
     }
 }

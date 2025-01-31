@@ -1,4 +1,5 @@
 #include "system.h"
+#include <stdio.h>
 
 static uint64_t ticks;
 
@@ -31,9 +32,15 @@ void SysTick_Handler(void)
 }
 
 // printf retarget
+/*
 extern int __io_putchar(int ch)
 {
     uart2_write(ch);
     return ch;
-
 }
+
+extern int __io_getchar(void)
+{
+    return uart2_read();
+}
+*/
