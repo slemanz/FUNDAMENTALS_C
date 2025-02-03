@@ -2,28 +2,14 @@
 #include <stdio.h>
 #include <system.h>
 
-struct __FILE {int handle;};
-FILE __stdin = {0};
-FILE __stdout = {1};
-FILE __stderr = {2};
-
-int fgetc(FILE *f)
+extern int __io_putchar(int ch)
 {
-    int c;
-
-    c = uart2_read();
-    if(c == '\r')
-    {
-        uart2_write(c);
-        c = '\n';
-    }
-    uart2_write(c);
-    return c;
+    return uart2_write(ch);
 }
 
-int fputc(int c, FILE *f)
+extern int __io_getchar(void)
 {
-    return uart2_write(c);
+    return uart2_read();
 }
 
 
