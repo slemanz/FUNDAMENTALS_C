@@ -19,6 +19,8 @@ char str[80];
 int main(void)
  {
     system_init();
+    setbuf(stdin, NULL);
+    setbuf(stdout, NULL);
 
     while (1)
     {   
