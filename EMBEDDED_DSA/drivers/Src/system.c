@@ -1,8 +1,6 @@
 #include "system.h"
 #include <stdio.h>
 
-static uint64_t ticks;
-
 void system_init(void)
 {
     // Set GPIOA pin 3 as output
@@ -18,21 +16,9 @@ void system_init(void)
     GPIO_WriteToOutputPin(LED_PORT, LED_PIN, GPIO_PIN_SET);
 
     uart2_init();
-    //systick_init(1000);
-    
 
     setbuf(stdin, NULL);
     setbuf(stdout, NULL);
-}
-
-uint64_t system_get_ticks(void)
-{
-    return ticks;
-}
-
-void SysTick_Handler(void)
-{
-    ticks++;
 }
 
 // printf retarget

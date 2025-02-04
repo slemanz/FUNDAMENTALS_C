@@ -27,11 +27,11 @@ static int Clock;
 int main(void)
  {
     system_init();
+    systick_init(1); // 1hz
 
     while (1)
     {   
         state_table[current_state]();
-        Clock++;
     }
 }
 
@@ -43,7 +43,7 @@ void state_machine_init(void)
 
 void state_a_function(void)
 {
-    if(Clock == 200000)
+    if(Clock == 2)
     {
         current_state = STATE_B;
         printf("This is the executing of STATE A \n\r");
@@ -53,7 +53,7 @@ void state_a_function(void)
 
 void state_b_function(void)
 {
-    if(Clock == 500000)
+    if(Clock == 5)
     {
         current_state = STATE_C;
         printf("This is the executing of STATE B \n\r");
@@ -62,11 +62,15 @@ void state_b_function(void)
 
 void state_c_function(void)
 {
-    if(Clock == 900000)
+    if(Clock == 9)
     {
         Clock = 0;
         current_state = STATE_A;
         printf("This is the execution of STATE C \n\r");
     }
 
+}
+void SysTick_Handler(void)
+{
+    Clock++;
 }
