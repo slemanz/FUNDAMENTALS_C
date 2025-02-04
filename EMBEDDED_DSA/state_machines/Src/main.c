@@ -2,30 +2,52 @@
 #include <stdio.h>
 #include <system.h>
 
-extern int __io_putchar(int ch)
-{
-    return uart2_write(ch);
-}
+enum states{
+    STATE_A = 0,
+    STATE_B,
+    STATE_C
+};
 
-extern int __io_getchar(void)
-{
-    return uart2_read();
-}
+typedef enum states State_Type;
 
+void state_a_function(void);
+void state_b_function(void);
+void state_c_function(void);
 
-int n;
-char str[80];
+static void (*state_table[])(void) = {
+                                        state_a_function,
+                                        state_b_function,
+                                        state_c_function
+};
+
+static State_Type current_state;
+static int Clock;
 
 int main(void)
  {
     system_init();
-    setbuf(stdin, NULL);
-    setbuf(stdout, NULL);
 
     while (1)
     {   
-        printf("Please enter a number:\r\n");
-        scanf("%d", &n);
-        printf("the number: %d\r\n", n);
     }
+}
+
+void state_machine_init(void)
+{
+    
+}
+
+void state_a_function(void)
+{
+
+}
+
+void state_b_function(void)
+{
+
+}
+
+void state_c_function(void)
+{
+
 }

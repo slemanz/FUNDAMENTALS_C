@@ -18,7 +18,11 @@ void system_init(void)
     GPIO_WriteToOutputPin(LED_PORT, LED_PIN, GPIO_PIN_SET);
 
     uart2_init();
-    systick_init(1000);
+    //systick_init(1000);
+    
+
+    setbuf(stdin, NULL);
+    setbuf(stdout, NULL);
 }
 
 uint64_t system_get_ticks(void)
@@ -32,15 +36,12 @@ void SysTick_Handler(void)
 }
 
 // printf retarget
-/*
 extern int __io_putchar(int ch)
 {
-    uart2_write(ch);
-    return ch;
+    return uart2_write(ch);
 }
 
 extern int __io_getchar(void)
 {
     return uart2_read();
 }
-*/
