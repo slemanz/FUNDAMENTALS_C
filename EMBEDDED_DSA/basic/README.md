@@ -10,6 +10,8 @@
 
 **[2.2 Arrays](#2-2-arrays)**
 
+**[2.2.1 Basic Array Operations](#2-2-1-basic-array-operations)**
+
 ---
 
 ## 2-1 Pointers
@@ -88,3 +90,43 @@ void printValue(void *ptr, char type)
 ```
 
 ## 2-2 Arrays
+
+An array in C is a collection of elements of the same data type, stored in contiguous memory locations. It allows you to store multiple values of the same type using a single variable name, and you can access individual elements using their index.
+
+Examples:
+
+```C
+#include <stdio.h>
+
+int x, *pt;
+
+int main() {
+    int data[5] = {10, 20, 30, 40, 50}; // Declaration and initialization of an array
+
+    // same
+    x = data[0];
+    x = *data;
+
+    // same
+    pt = data;
+    pt = &data[0];
+
+    // same
+    x = data[3];
+    x = *(data+3);
+
+    // same
+    pt = data;
+    data[2] = 0x1234;
+    pt[2]   = 0x1234;
+    *(pt+2) = 0x1234;
+
+    // Accessing elements
+    printf("First element: %d\n", data[0]); // Output: 10
+    printf("Second element: %d\n", data[1]); // Output: 20
+
+    return 0;
+}
+```
+
+### 2-2-1 Basic Array Operations
