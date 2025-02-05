@@ -1,18 +1,20 @@
 # 2. Basic
 
-**[2.1 Pointers](#2.1-pointers)**
+**[2.1 Pointers](#2-1-pointers)**
 
-**[2.1.1 Uses of Pointers](#2.1.1-uses-of-pointers)**
+**[2.1.1 Uses of Pointers](#2-1-1-uses-of-pointers)**
 
-**[2.1.2 Pointer Arithmetic Operations:](#2.1.2-pointer-arithmetic-operations)**
+**[2.1.2 Pointer Arithmetic Operations](#2-1-2-pointer-arithmetic-operations)**
+
+**[2.1.3 Generic (Universal) Pointer](#2-1-3-generic-universal-pointer)**
 
 ---
 
-## 2.1 Pointers
+## 2-1 Pointers
 
 In C programming, a pointer is a variable that stores the memory address of another variable. Pointers are powerful tools in C because they allow for dynamic memory management, efficient array handling, and the implementation of complex data structures like linked lists, trees, and graphs.
 
-### 2.1.1 Uses of Pointers
+### 2-1-1 Uses of Pointers
 
 **Dynamic Memory Allocation:** Pointers are used with functions such as malloc, calloc, realloc, and free to manage memory dynamically during program execution.
 
@@ -44,5 +46,16 @@ int main() {
 }
 ```
 
-### 2.1.2 Pointer Arithmetic Operations
+### 2-1-2 Pointer Arithmetic Operations
 
+Pointer arithmetic in C allows you to perform arithmetic operations on pointer values, making it possible to navigate through arrays and other data structures efficiently. The rules of pointer arithmetic depend on the data type the pointer is pointing to. 
+
+**Addition:** You can add an integer to a pointer. This moves the pointer forward by that number of elements, not bytes. For example, if you have a pointer to an integer and you add 1 to it, it will point to the next integer, which is typically 2 or 4 bytes away on most systems.
+
+**Subtraction:** You can subtract an integer from a pointer, which moves it backward by that number of elements.
+
+**Pointer Subtraction:** You can also subtract one pointer from another when both point to elements of the same array. This gives you the number of elements between them.
+
+**Comparison:** Pointers can be compared using relational operators. You can check if one pointer points to an earlier or later element in an array.
+
+### 2-1-3 Generic Universal Pointer
