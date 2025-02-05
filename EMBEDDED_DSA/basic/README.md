@@ -8,6 +8,8 @@
 
 **[2.1.3 Generic (Universal) Pointer](#2-1-3-generic-universal-pointer)**
 
+**[2.2 Arrays](#2-2-arrays)**
+
 ---
 
 ## 2-1 Pointers
@@ -59,3 +61,30 @@ Pointer arithmetic in C allows you to perform arithmetic operations on pointer v
 **Comparison:** Pointers can be compared using relational operators. You can check if one pointer points to an earlier or later element in an array.
 
 ### 2-1-3 Generic Universal Pointer
+
+In C, a generic pointer, often referred to as a "universal pointer," is a pointer that can point to any data type. The most commonly used type for a
+generic pointer in C is `void *`. This type of pointer does not have a specific data type associated with it, allowing it to be used for pointing to
+any type of variable, including function pointers or data structures.
+
+Example:
+
+```C
+void printValue(void *ptr, char type) 
+{
+    switch(type) {
+        case 'i': // integer
+            printf("Integer value: %d\n", *(int *)ptr);
+            break;
+        case 'f': // float
+            printf("Float value: %.2f\n", *(float *)ptr);
+            break;
+        case 'c': // character
+            printf("Character value: %c\n", *(char *)ptr);
+            break;
+        default:
+            printf("Unknown type\n");
+    }
+}
+```
+
+## 2-2 Arrays
