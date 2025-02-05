@@ -11,3 +11,5 @@ and of inputs to next states.
 
 **Sequential System:** requires additional information about sequence of input changes.
 
+**[Simple Example of state machines](Src/main.c)**
+
