@@ -1,5 +1,6 @@
 #include "stm32f401xx.h"
 #include <stdio.h>
+#include <stdlib.h>
 #include <system.h>
 
 struct ARRAY
@@ -12,6 +13,8 @@ struct ARRAY
 typedef struct ARRAY arrayType;
 void array_append(arrayType *arr, int32_t elem);
 void array_insert(arrayType *arr, uint32_t idx, int32_t elem);
+int32_t array_delete(arrayType *arr, uint32_t idx);
+void array_reverse(arrayType *arr);
 
 int main(void)
 {
@@ -32,6 +35,16 @@ int main(void)
     array_insert(&signal, 2, 25);
 
     printf("After append and Insertion array is: \n\r");
+    for(int i = 0; i < signal.length; i++)
+    {
+        printf(" %ld ", signal.data[i]);
+    }
+    printf("\n\r\n\r");
+    
+
+    array_delete(&signal, 0);
+    array_reverse(&signal);
+    printf("After delete and reverse, array is: \n\r");
     for(int i = 0; i < signal.length; i++)
     {
         printf(" %ld ", signal.data[i]);
@@ -60,4 +73,39 @@ void array_insert(arrayType *arr, uint32_t idx, int32_t elem)
         arr->data[idx] = elem;
         arr->length++;
     }
+}
+
+int32_t array_delete(arrayType *arr, uint32_t idx)
+{
+    int32_t elem;
+    if(idx < arr->length)
+    {
+        elem = arr->data[idx];
+
+        for(int i = idx; i < arr->length - 1; i++)
+        {
+            arr->data[i] = arr->data[i+1];
+        }
+        arr->length--;
+        return elem;
+    }
+    return 0;
+}
+
+void array_reverse(arrayType *arr)
+{
+    int i, j;
+    int32_t *temp;
+    temp = (int32_t *)malloc(arr->length*sizeof(int32_t));
+
+    for(i = arr->length - 1, j=0; i>=0; i--, j++)
+    {
+        temp[j] = arr->data[i];
+    }
+
+    for(i = 0; i < arr->length; i++)
+    {
+        arr->data[i] = temp[i];
+    }
+    free(temp);
 }
