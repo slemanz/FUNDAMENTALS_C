@@ -132,3 +132,4 @@ int main() {
 ### 2-2-1 Basic Array
 
 - [Array 2 max value](Src/arr_max.c)
+- [Abstract Data Type (ADT)](Src/arr_adt.c)
