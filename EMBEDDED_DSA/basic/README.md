@@ -10,7 +10,7 @@
 
 **[2.2 Arrays](#2-2-arrays)**
 
-**[2.2.1 Basic Array Operations](#2-2-1-basic-array-operations)**
+**[2.2.1 Basic Array](#2-2-1-basic-array)**
 
 ---
 
@@ -129,4 +129,6 @@ int main() {
 }
 ```
 
-### 2-2-1 Basic Array Operations
+### 2-2-1 Basic Array
+
+- [Array 2 max value](Src/arr_max.c)
