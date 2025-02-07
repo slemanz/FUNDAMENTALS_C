@@ -134,3 +134,4 @@ int main() {
 - [Array 2 max value](Src/arr_max.c)
 - [Abstract Data Type (ADT)](Src/arr_adt.c)
 - [Array Insertion](Src/arr_insertion.c)
+- [Array Reverse and Delete](Src/arr_rev_del.c)

@@ -15,29 +15,40 @@ void array_append(arrayType *arr, int32_t elem);
 void array_insert(arrayType *arr, uint32_t idx, int32_t elem);
 int32_t array_delete(arrayType *arr, uint32_t idx);
 void array_reverse(arrayType *arr);
-int8_t array_isAscending(arrayType *arr);
-int8_t array_isDescending(arrayType *arr);
 
 int main(void)
 {
     system_init();
     printf("\n");
 
-    arrayType array1 ={{10, 20, 30, 40, 50}, 50, 5};
+    arrayType signal ={{10, 20, 30, 11, 12, 13, 14}, 50, 7};
 
-    if(array_isAscending(&array1))
+    printf("The original array is: \n\r");
+    for(int i = 0; i < signal.length; i++)
     {
-        printf("Is ascending\n\r");
+        printf(" %ld ", signal.data[i]);
     }
+    printf("\n\r\n\r");
 
-    array_reverse(&array1);
 
-    if(array_isDescending(&array1))
+    array_append(&signal, 5);
+    array_insert(&signal, 2, 25);
+
+    printf("After append and Insertion array is: \n\r");
+    for(int i = 0; i < signal.length; i++)
     {
-        printf("Is descending\n\r");
+        printf(" %ld ", signal.data[i]);
     }
-
+    printf("\n\r\n\r");
     
+
+    array_delete(&signal, 0);
+    array_reverse(&signal);
+    printf("After delete and reverse, array is: \n\r");
+    for(int i = 0; i < signal.length; i++)
+    {
+        printf(" %ld ", signal.data[i]);
+    }
     printf("\n\r\n\r");
 
     while (1);
@@ -97,28 +108,4 @@ void array_reverse(arrayType *arr)
         arr->data[i] = temp[i];
     }
     free(temp);
-}
-
-int8_t array_isAscending(arrayType *arr)
-{
-    for(int i=0; i < arr->length-1; i++)
-    {
-        if(arr->data[i] > arr->data[i+1])
-        {
-            return 0;
-        }
-    }
-    return 1;
-}
-
-int8_t array_isDescending(arrayType *arr)
-{
-    for(int i=0; i < arr->length-1; i++)
-    {
-        if(arr->data[i] < arr->data[i+1])
-        {
-            return 0;
-        }
-    }
-    return 1;
 }
