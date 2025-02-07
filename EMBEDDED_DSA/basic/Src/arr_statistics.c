@@ -24,7 +24,6 @@ int32_t array_max(arrayType *arr);
 int32_t array_min(arrayType *arr);
 int32_t array_sum(arrayType *arr);
 double array_mean(arrayType *arr);
-arrayType* array_merge(arrayType *arr1, arrayType *arr2);
 
 int main(void)
 {
@@ -209,36 +208,4 @@ double array_mean(arrayType *arr)
 
 
     return mean;
-}
-
-arrayType* array_merge(arrayType *arr1, arrayType *arr2)
-{
-    int32_t i, j, k;
-    i = 0;
-    j = 0;
-    k = 0;
-
-    arrayType *dest_arr = (arrayType *)malloc(sizeof(arrayType));
-    while(i < arr1->length && j < arr2->length)
-    {
-        if(arr1->data[i] < arr2->data[j])
-        {
-            dest_arr->data[k++] = arr1->data[i++];
-        }else
-        {
-            dest_arr->data[k++] = arr2->data[j++];
-        }
-    }
-
-    for(; i < arr1->length; i++)
-    {
-        dest_arr->data[k++] = arr1->data[i];
-    }
-    for(; j<arr2->length; j++)
-    {
-        dest_arr->data[k++] = arr2->data[j];
-    }
-    dest_arr->length = arr1->length + arr2->length;
-
-    return dest_arr;
 }
