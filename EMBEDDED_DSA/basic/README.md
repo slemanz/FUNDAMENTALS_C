@@ -135,3 +135,4 @@ int main() {
 - [Abstract Data Type (ADT)](Src/arr_adt.c)
 - [Array Insertion](Src/arr_insertion.c)
 - [Array Reverse and Delete](Src/arr_rev_del.c)
+- [Array Sort](Src/arr_sort.c)
