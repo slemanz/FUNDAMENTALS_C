@@ -20,48 +20,30 @@ int8_t array_isDescending(arrayType *arr);
 void array_sort_ascend(arrayType *arr);
 void array_sort_descend(arrayType *arr);
 
+int32_t array_max(arrayType *arr);
+int32_t array_min(arrayType *arr);
+int32_t array_sum(arrayType *arr);
+double array_mean(arrayType *arr);
+
 int main(void)
 {
     system_init();
     printf("\n");
 
-    arrayType array1 ={{10, 20, 30, 40, 50}, 50, 5};
-
-    printf("Is the array ascending %d\n\r", array_isAscending(&array1));
-    printf("Is the array descending %d\n\r", array_isDescending(&array1));
-
-    array_reverse(&array1);
-
-    printf("Is the array ascending %d\n\r", array_isAscending(&array1));
-    printf("Is the array descending %d\n\r", array_isDescending(&array1));
-
-    arrayType signal1 ={{10, 20, 30, 11, 12, 13, 14}, 50, 7};
-    arrayType signal2 ={{10, 20, 30, 11, 12, 13, 14}, 50, 7};
+    arrayType signal = {{10, 20, 30, 11, 12, 13, 14}, 50, 7};
 
     printf("The original array is: \n\r");
-    for(int i = 0; i < signal1.length; i++)
+    for(int i = 0; i < signal.length; i++)
     {
-        printf(" %ld ", signal1.data[i]);
+        printf(" %ld ", signal.data[i]);
     }
     printf("\n\r\n\r");
 
+    printf("max: %ld\n\r", array_max(&signal));
+    printf("min: %ld\n\r", array_min(&signal));
+    printf("sum: %ld\n\r", array_sum(&signal));
+    printf("mean: %.3lf\n\r", array_mean(&signal));
     
-    printf("The ascend array is: \n\r");
-    array_sort_ascend(&signal1);
-    for(int i = 0; i < signal1.length; i++)
-    {
-        printf(" %ld ", signal1.data[i]);
-    }
-    printf("\n\r\n\r");
-
-
-    printf("The descend array is: \n\r");
-    array_sort_descend(&signal2);
-    for(int i = 0; i < signal2.length; i++)
-    {
-        printf(" %ld ", signal2.data[i]);
-    }
-    printf("\n\r\n\r");
 
     while (1);
 }
@@ -176,4 +158,54 @@ void array_sort_descend(arrayType *arr)
         }
         arr->data[j] = n_temp;
     }
+}
+
+
+int32_t array_max(arrayType *arr)
+{
+    int32_t max = arr->data[0];
+    for(int i = 0; i < arr->length; i++)
+    {
+        if(arr->data[i] > max)
+        {
+            max = arr->data[i];
+        }
+    }
+    return max;
+}
+
+int32_t array_min(arrayType *arr)
+{
+    int32_t min = arr->data[0];
+    for(int i = 0; i < arr->length; i++)
+    {
+        if(arr->data[i] < min)
+        {
+            min = arr->data[i];
+        }
+    }
+    return min;
+}
+
+int32_t array_sum(arrayType *arr)
+{
+    int32_t sum = 0;
+    for(int i = 0; i < arr->length; i++)
+    {
+        sum += arr->data[i];
+    }
+    return sum;
+}
+
+double array_mean(arrayType *arr)
+{
+    int32_t sum = 0;
+    sum = array_sum(arr);
+
+    double mean = 0.0f;
+    mean = ((double)sum)/(arr->length);
+
+
+
+    return mean;
 }
