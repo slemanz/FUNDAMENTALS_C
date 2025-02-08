@@ -12,6 +12,8 @@
 
 **[2.2.1 Basic Array](#2-2-1-basic-array)**
 
+**[2.3 Structures and Unions](#2-3-structures-and-unions)**
+
 ---
 
 ## 2-1 Pointers
@@ -137,3 +139,6 @@ int main() {
 - [Array Reverse and Delete](Src/arr_rev_del.c)
 - [Array Sort](Src/arr_sort.c)
 - [Array Statistics](Src/arr_statistics.c)
+- [Array Merge](Src/arr_merge.c)
+
+## 2-3 Structures and Unions
