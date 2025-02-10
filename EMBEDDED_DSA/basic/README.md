@@ -14,6 +14,8 @@
 
 **[2.3 Structures and Unions](#2-3-structures-and-unions)**
 
+**[2.3.1 Examples](#2-3-1-examples)**
+
 ---
 
 ## 2-1 Pointers
@@ -142,3 +144,16 @@ int main() {
 - [Array Merge](Src/arr_merge.c)
 
 ## 2-3 Structures and Unions
+
+In C, a **struct** (short for structure) is a user-defined data type that allows you to group variables of different data types under a single name.
+This enables you to create complex data types that represent a single entity with multiple attributes.
+
+A **union** is similar to a struct in that it also groups different data types under a single name. However, in a union, all members share
+the same memory location. This means that a union can hold only one of its members at a time, and the size of a union is determined by the
+size of its largest member.
+
+The **typedef** keyword in C is used to create an alias for existing types, making your code more readable and manageable. When used with structs,
+it allows you to define a new name for a struct type, so you don't have to repeat the struct keyword every time you declare a variable of that type.
+
+### 2-3-1 Examples
+
