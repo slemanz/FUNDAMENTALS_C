@@ -157,3 +157,54 @@ it allows you to define a new name for a struct type, so you don't have to repea
 
 ### 2-3-1 Examples
 
+Typedef and struct:
+
+```C
+#include <stdio.h>
+
+// Defining a struct
+struct Person {
+    char name[50];
+    int age;
+};
+
+// Using typedef to create an alias
+typedef struct Person Person;
+
+int main() {
+    Person p1;  // Now you can use Person instead of struct Person
+    strcpy(p1.name, "Alice");
+    p1.age = 30;
+
+    printf("Name: %s, Age: %d\n", p1.name, p1.age);
+    return 0;
+}
+```
+
+Union:
+
+```C
+#include <stdio.h>
+
+// Defining a union
+union Data {
+    int intValue;
+    float floatValue;
+    char charValue;
+};
+
+int main() {
+    union Data data;
+    
+    data.intValue = 5; // Assigning an int
+    printf("Integer: %d\n", data.intValue);
+    
+    data.floatValue = 5.5; // Now assigning a float
+    printf("Float: %.2f\n", data.floatValue);
+    
+    // The intValue is overwritten by floatValue
+    printf("Integer after float assignment: %d\n", data.intValue); // This is now garbage value
+
+    return 0;
+}
+```
