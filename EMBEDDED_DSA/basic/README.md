@@ -208,3 +208,8 @@ int main() {
     return 0;
 }
 ```
+
+More examples in code:
+
+- [Structures](Src/structures.c)
+- [Unions](Src/unions.c)
