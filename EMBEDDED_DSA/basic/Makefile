@@ -55,5 +55,8 @@ load:
 debug:
 	openocd -f interface/jlink.cfg -c "transport select swd" -f target/stm32f4x.cfg -c init -c "reset init"
 
+reset:
+	openocd -f interface/jlink.cfg -c "transport select swd" -f target/stm32f4x.cfg -c init -c "reset run" -c shutdown
+
 clean:
 	rm -rf *.o *.map Build/*.o
