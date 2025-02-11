@@ -46,7 +46,6 @@ Build/%.o: ../drivers/Src/%.c
 Build/final.elf: $(OBJS)
 	$(CC) $(LDFLAGS) -o $@ $^
 	$(OBJCOPY) -O binary Build/final.elf Build/flash.bin
-	$(OBJCOPY) -O binary Build/final.elf ~/opt/SEGGER/flash.bin
 
 load:
 	openocd -f interface/jlink.cfg -c "transport select swd" -f target/stm32f4x.cfg -c init -c "reset init" \
