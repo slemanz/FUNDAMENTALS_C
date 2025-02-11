@@ -27,3 +27,35 @@
 - We use a linked structure with fixed size.
 - There should be one-to-one mapping between the FSM state graph and the data structure.
 
+## Case Study: traffic light system (using moore FSM)
+
+Steps:
+
+1. Define what a state is (e.g. light patterns)
+2. Make a list of various states in which system might exists.
+3. Add outputs and inputs to enable the system to affect external environment and collect information about environment.
+
+Key points:
+
+- State describes which road has authority to cross the intersection.
+- Light pattern defines which road has right of way over the other.
+
+Inputs:
+
+- Car sensor on north
+- Car sensor on east
+
+Outputs:
+
+- 6 outputs one for each light in the traffic signal
+
+Decision rules:
+
+1. If no cars are coming stay in green state
+2. To change from green to red implement yellow for exactly 5 seconds
+3. Green lights should last for at least 30 secongs
+4. If cars are only comming in one direction, move to that direction and say in green
+5. If cars are coming in both directions cycle through all 4 states.
+
+**[CODE IMPLEMENTATION](Src/)**
+
