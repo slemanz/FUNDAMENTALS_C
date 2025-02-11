@@ -214,3 +214,4 @@ More examples in code:
 - [Structures](Src/structures.c)
 - [Unions](Src/unions.c)
 - [Struct Array](Src/struct_array.c)
+- [Nested structures](Src/nested_structures.c)
