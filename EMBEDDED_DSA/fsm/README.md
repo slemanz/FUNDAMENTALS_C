@@ -57,5 +57,5 @@ Decision rules:
 4. If cars are only comming in one direction, move to that direction and say in green
 5. If cars are coming in both directions cycle through all 4 states.
 
-**[CODE IMPLEMENTATION](Src/)**
+**[CODE IMPLEMENTATION - MOORE](Src/moore.c)**
 
