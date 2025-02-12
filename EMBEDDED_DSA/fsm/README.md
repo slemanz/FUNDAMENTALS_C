@@ -59,4 +59,5 @@ Decision rules:
 
 **[CODE IMPLEMENTATION - MOORE](Src/moore.c)**
 **[CODE IMPLEMENTATION - MOORE POINTERS](Src/moore_pointers.c)**
+**[CODE IMPLEMENTATION - MOORE FUNCTIONS](Src/moore_functions.c)**
 
