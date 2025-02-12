@@ -48,7 +48,8 @@ stateType STATE_MACHINE[4] = {
     {0x210, 500,  {go_north, go_north, go_north, go_north}}
 };
 
-void TrafficSystemInit();
+void TrafficSystemInit(void);
+void delayMs(int n);
 
 int main(void)
 {
@@ -66,4 +67,18 @@ void TrafficSystemInit(void)
     TRAFFIC_LIGHTS_PORT->MODER |= NORTH_LED_GREEN_MODE_BIT  | NORTH_LED_RED_MODE_BIT |
                                   NORTH_LED_YELLOW_MODE_BIT | EAST_LED_RED_MODE_BIT  |
                                   EAST_LED_YELLOW_MODE_BIT  | EAST_LED_GREEN_MODE_BIT;
+}
+
+void delayMs(int n)
+{
+    SYSTICK->LOAD = 16000; /* Reload with number of clocks per milliseconds */
+    SYSTICK->VAL  = 0;     /* Clear current value register */
+    SYSTICK->CTRL = 0x05; /* Enable the timer */
+
+    for(int i = 0; i < n; i++)
+    {
+        while((SYSTICK->CTRL & 0x10000) == 0){} // wait until count flag is set
+    }
+    SYSTICK->CTRL = 0;
+
 }
