@@ -5,3 +5,5 @@
 [2. Basic](basic/README.md)
 
 [3. Moore and Mealy Finite State Machines](fsm/README.md)
+
+[4. Linked List](linked/README.md)
