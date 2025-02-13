@@ -61,3 +61,23 @@ Decision rules:
 **[CODE IMPLEMENTATION - MOORE POINTERS](Src/moore_pointers.c)**
 **[CODE IMPLEMENTATION - MOORE FUNCTIONS](Src/moore_functions.c)**
 
+## Case Stury: Engine Control System (Mealy FSM)
+
+2 output
+
+- Brake
+- Gas
+
+1 input
+
+- Control
+
+Decision Rules:
+
+1. If stopped and control is low, press brake and remain stopped.
+2. If stopped and control is high, release brake and go.
+3. If going and control is high, press gas and keep going.
+4. If going and control is high, press gas gas keep going.
+5. There must be at least 1 ms of no brake, no gas as system switches between go and stop.
+
+**[CODE IMPLEMENTATION - MEALY](Src/mealy.c)**
