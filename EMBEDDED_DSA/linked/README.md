@@ -52,3 +52,8 @@ Cons
 
 - No random access allowed
 - Difficult to manipulate
+
+## Sinlgy Linked Lists
+
+- Each node has next pointer to the following element
+- Last node is NULL
