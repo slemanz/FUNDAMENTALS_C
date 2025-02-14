@@ -16,6 +16,7 @@ uint8_t linkedlist_insert(nodeType *l_list, uint32_t idx, int32_t elem);
 int32_t linkedlist_delete(nodeType *l_list, uint32_t idx);
 int32_t linkedlist_min(nodeType *l_list);
 int32_t linkedlist_max(nodeType *l_list);
+int32_t linkedlist_reverse(nodeType *l_list);
 
 nodeType *head;
 
@@ -35,6 +36,7 @@ int main(void)
     linkedlist_delete(head, 0);
 
     uint32_t len = linkedlist_length(head);
+    linkedlist_reverse(head);
 
     printf("Linked list len is: %ld\n\r", len);
     printf("Linked list max is: %ld\n\r", linkedlist_max(head));
@@ -189,4 +191,36 @@ int32_t linkedlist_max(nodeType *l_list)
         l_list = l_list->next;
     }
     return max;
+}
+
+int32_t linkedlist_reverse(nodeType *l_list)
+{
+    nodeType *temp;
+    int32_t *arr;
+    temp = l_list;
+
+    int i = 0;
+    arr = (int32_t *)malloc(sizeof(int32_t)*linkedlist_length(l_list));
+    if(arr == NULL)
+    {
+        return 0;
+    }
+
+    while(temp != NULL)
+    {
+        arr[i] = temp->data;
+        temp = temp->next;
+        i++;
+    }
+
+    temp = l_list;
+    i--;
+
+    while(temp != NULL)
+    {
+        temp->data = arr[i];
+        temp = temp->next;
+        i--;
+    }
+
 }
