@@ -68,6 +68,8 @@ register char * stack_ptr asm("sp");
 char *__env[1] = { 0 };
 char **environ = __env;
 
+static uint8_t *__sbrk_heap_end = NULL;
+
 
 
 /* Functions */
@@ -190,23 +192,30 @@ int _execve(char *name, char **argv, char **env)
  _sbrk
  Increase program data space. Malloc and related functions depend on this
 **/
-caddr_t _sbrk(int incr)
+void *_sbrk(ptrdiff_t incr)
 {
-	extern char end asm("end");
-	static char *heap_end;
-	char *prev_heap_end;
+  extern uint8_t _end; /* Symbol defined in the linker script */
+  extern uint8_t _estack; /* Symbol defined in the linker script */
+  extern uint32_t _Min_Stack_Size; /* Symbol defined in the linker script */
+  const uint32_t stack_limit = (uint32_t)&_estack - (uint32_t)&_Min_Stack_Size;
+  const uint8_t *max_heap = (uint8_t *)stack_limit;
+  uint8_t *prev_heap_end;
 
-	if (heap_end == 0)
-		heap_end = &end;
+  /* Initialize heap end at first call */
+  if (NULL == __sbrk_heap_end)
+  {
+    __sbrk_heap_end = &_end;
+  }
 
-	prev_heap_end = heap_end;
-	if (heap_end + incr > stack_ptr)
-	{
-		errno = ENOMEM;
-		return (caddr_t) -1;
-	}
+  /* Protect heap from growing into the reserved MSP stack */
+  if (__sbrk_heap_end + incr > max_heap)
+  {
+    errno = ENOMEM;
+    return (void *)-1;
+  }
 
-	heap_end += incr;
+  prev_heap_end = __sbrk_heap_end;
+  __sbrk_heap_end += incr;
 
-	return (caddr_t) prev_heap_end;
+  return (void *)prev_heap_end;
 }

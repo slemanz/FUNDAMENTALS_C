@@ -23,20 +23,23 @@ int main(void)
     printf("\n");
 
     int32_t task_pri[] = {0, 2, 5, 4, 1, 4, 6};
-    linkedlist_create(task_pri, 7);
-    //linkedlist_insert(head, 1, 3);
+    if(linkedlist_create(task_pri, 7))
+    {
+        printf("Created list!\n");
+    }
+    linkedlist_insert(head, 1, 3);
 
-    nodeType *pri_list = head;
-    //uint32_t len = linkedlist_length(pri_list);
-    uint32_t len = 3;
+    uint32_t len = linkedlist_length(head);
 
     printf("Linked list len is: %ld\n\r", len);
     printf("Linked list content is:\n\r");
     while(head != NULL)
     {
-        printf("%d\n\r", pri_list->data);
-        pri_list = pri_list->next;
+        printf("%d\n\r", head->data);
+        head = head->next;
     }
+
+    printf("Test\n");
 
 
     while (1)
