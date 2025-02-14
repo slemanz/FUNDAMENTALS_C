@@ -10,8 +10,11 @@ struct node
 };
 
 typedef struct node nodeType;
-nodeType* linkedlist_create(int32_t *arr, uint32_t arr_len);
+uint8_t linkedlist_create(int32_t *arr, uint32_t arr_len);
 uint32_t linkedlist_length(nodeType *l_list);
+uint8_t linkedlist_insert(nodeType *l_list, uint32_t idx, int32_t elem);
+
+nodeType *head;
 
 
 int main(void)
@@ -20,13 +23,16 @@ int main(void)
     printf("\n");
 
     int32_t task_pri[] = {0, 2, 5, 4, 1, 4, 6};
-    nodeType *pri_list = linkedlist_create(task_pri, 7);
+    linkedlist_create(task_pri, 7);
+    //linkedlist_insert(head, 1, 3);
 
-    uint32_t len = linkedlist_length(pri_list);
+    nodeType *pri_list = head;
+    //uint32_t len = linkedlist_length(pri_list);
+    uint32_t len = 3;
 
     printf("Linked list len is: %ld\n\r", len);
     printf("Linked list content is:\n\r");
-    while(pri_list != NULL)
+    while(head != NULL)
     {
         printf("%d\n\r", pri_list->data);
         pri_list = pri_list->next;
@@ -39,12 +45,12 @@ int main(void)
     }
 }
 
-nodeType* linkedlist_create(int32_t *arr, uint32_t arr_len)
+uint8_t linkedlist_create(int32_t *arr, uint32_t arr_len)
 {
-    nodeType *head, *last, *temp;
+    nodeType *last, *temp;
     head = (nodeType*)malloc(sizeof(nodeType));
 
-    if(!head) return head; // null
+    if(!head) return 0; // null
 
     head->data = arr[0];
     head->next = NULL;
@@ -53,7 +59,7 @@ nodeType* linkedlist_create(int32_t *arr, uint32_t arr_len)
     for(int i = 1; i < arr_len; i++)
     {
         temp = (nodeType*)malloc(sizeof(nodeType));
-        if(!temp) return temp;
+        if(!temp) return 0;
 
         temp->data = arr[i];
         temp->next = NULL;
@@ -61,7 +67,7 @@ nodeType* linkedlist_create(int32_t *arr, uint32_t arr_len)
         last = temp;
     }
 
-    return head;
+    return 1;
 }
 
 uint32_t linkedlist_length(nodeType *l_list)
@@ -75,4 +81,35 @@ uint32_t linkedlist_length(nodeType *l_list)
     }
 
     return len;
+}
+
+uint8_t linkedlist_insert(nodeType *l_list, uint32_t idx, int32_t elem)
+{
+    nodeType *temp;
+
+    if(idx > linkedlist_length(l_list))
+    {
+        return 0;
+    }
+
+    temp = (nodeType*)malloc(sizeof(nodeType));
+    temp->data = elem;
+
+    /* Insertion at the begining */
+    if(idx == 0)
+    {
+        temp->next = l_list;
+        l_list = temp;
+    }
+
+    else
+    {
+        for(int i =0; i < idx-1; i++)
+        {
+            l_list = l_list->next;
+        }
+        temp->next = l_list->next;
+        l_list->next = temp;
+    }
+    return 1;
 }
