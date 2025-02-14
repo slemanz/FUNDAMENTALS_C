@@ -58,4 +58,5 @@ Cons
 - Each node has next pointer to the following element
 - Last node is NULL
 
-**[CODE IMPLEMENTATION](Src/)**
+**[CODE IMPLEMENTATION - SIMPLE LINKED LIST](Src/linked.c)**
+**[CODE IMPLEMENTATION - LINKED LIST FROM ARRAY](Src/linked_from_arr.c)**
