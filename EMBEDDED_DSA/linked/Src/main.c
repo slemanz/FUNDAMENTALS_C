@@ -11,6 +11,7 @@ struct node
 
 typedef struct node nodeType;
 nodeType* linkedlist_create(int32_t *arr, uint32_t arr_len);
+uint32_t linkedlist_length(nodeType *l_list);
 
 
 int main(void)
@@ -21,7 +22,9 @@ int main(void)
     int32_t task_pri[] = {0, 2, 5, 4, 1, 4, 6};
     nodeType *pri_list = linkedlist_create(task_pri, 7);
 
+    uint32_t len = linkedlist_length(pri_list);
 
+    printf("Linked list len is: %ld\n\r", len);
     printf("Linked list content is:\n\r");
     while(pri_list != NULL)
     {
@@ -59,4 +62,17 @@ nodeType* linkedlist_create(int32_t *arr, uint32_t arr_len)
     }
 
     return head;
+}
+
+uint32_t linkedlist_length(nodeType *l_list)
+{
+    uint32_t len = 0;
+
+    while(l_list)
+    {
+        len++;
+        l_list = l_list->next;
+    }
+
+    return len;
 }
