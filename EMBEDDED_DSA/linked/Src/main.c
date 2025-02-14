@@ -14,6 +14,8 @@ uint8_t linkedlist_create(int32_t *arr, uint32_t arr_len);
 uint32_t linkedlist_length(nodeType *l_list);
 uint8_t linkedlist_insert(nodeType *l_list, uint32_t idx, int32_t elem);
 int32_t linkedlist_delete(nodeType *l_list, uint32_t idx);
+int32_t linkedlist_min(nodeType *l_list);
+int32_t linkedlist_max(nodeType *l_list);
 
 nodeType *head;
 
@@ -23,7 +25,7 @@ int main(void)
     system_init();
     printf("\n");
 
-    int32_t task_pri[] = {0, 2, 5, 4, 1, 4, 6};
+    int32_t task_pri[] = {0, 2, 5, -4, 1, 4, 6};
     if(linkedlist_create(task_pri, 7))
     {
         printf("Created list!\n");
@@ -35,6 +37,8 @@ int main(void)
     uint32_t len = linkedlist_length(head);
 
     printf("Linked list len is: %ld\n\r", len);
+    printf("Linked list max is: %ld\n\r", linkedlist_max(head));
+    printf("Linked list min is: %ld\n\r", linkedlist_min(head));
     printf("Linked list content is:\n\r");
     while(head != NULL)
     {
@@ -149,4 +153,40 @@ int32_t linkedlist_delete(nodeType *l_list, uint32_t idx)
         return del;
     }
 
+}
+
+int32_t linkedlist_min(nodeType *l_list)
+{
+    int32_t min = 0;
+
+    if(l_list != NULL)
+    {
+        min = l_list->data;
+        l_list = l_list->next;
+    }
+
+    while(l_list != NULL)
+    {
+        if(l_list->data < min) min = l_list->data;
+        l_list = l_list->next;
+    }
+    return min;
+}
+
+int32_t linkedlist_max(nodeType *l_list)
+{
+    int32_t max = 0;
+
+    if(l_list != NULL)
+    {
+        max = l_list->data;
+        l_list = l_list->next;
+    }
+
+    while(l_list != NULL)
+    {
+        if(l_list->data > max) max = l_list->data;
+        l_list = l_list->next;
+    }
+    return max;
 }
