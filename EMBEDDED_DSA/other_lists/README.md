@@ -8,4 +8,7 @@
 
 ## 2-1 Doubly Linked List
 
+- Navigate in both directions
+- Each node requires an extra pointer
+
 ## 2-2 Circular Linked List
