@@ -7,3 +7,5 @@
 [3. Moore and Mealy Finite State Machines](fsm/README.md)
 
 [4. Linked List](linked/README.md)
+
+[5. Sensor Data Collection](sensor/README.md)
