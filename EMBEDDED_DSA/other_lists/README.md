@@ -11,6 +11,6 @@
 - Navigate in both directions
 - Each node requires an extra pointer
 
-**[CODE IMPLEMENTATION](Src/)**
+**[CODE IMPLEMENTATION](Src/dll.c)**
 
 ## 2-2 Circular Linked List
