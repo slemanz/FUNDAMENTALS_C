@@ -15,6 +15,8 @@ void c_linkedlist_insert_at_start(cll_nodeType **head, int data);
 void c_linkedlist_insert_at_end(cll_nodeType **head, int data);
 int c_linkedlist_length(cll_nodeType *head);
 void c_linkedlist_print_list(cll_nodeType *head);
+void c_linkedlist_delete_end(cll_nodeType **head);
+void c_linkedlist_delete_start(cll_nodeType **head);
 
 
 int main(void)
@@ -128,4 +130,45 @@ void c_linkedlist_print_list(cll_nodeType *head)
         current = current->next;
     }while(current != head);
     printf("\n");
+}
+
+void c_linkedlist_delete_end(cll_nodeType **head)
+{
+    cll_nodeType *current = *head;
+    cll_nodeType *temp = *head;
+
+    if(*head == NULL)
+    {
+        printf("List empty\n");
+        return;
+    }
+
+    while(current->next != *head)
+    {
+        temp = current;
+        current = current->next;
+    }
+    temp->next = current->next;
+    free(current);
+    return;
+}
+
+void c_linkedlist_delete_start(cll_nodeType **head)
+{
+    cll_nodeType *current = *head;
+
+    if(*head == NULL)
+    {
+        printf("List empty\n");
+        return;
+    }
+
+    while(current->next != *head)
+    {
+        current = current->next;
+    }
+    current->next = (*head)->next;
+    *head = (*head)->next;
+    free(current);
+    return;
 }
