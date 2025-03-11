@@ -11,3 +11,5 @@
 [5. Sensor Data Collection](sensor/README.md)
 
 [6. Other Lists](other_lists/README.md)
+
+[7. Stack](stack/README.md)
