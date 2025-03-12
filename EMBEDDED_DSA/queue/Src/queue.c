@@ -30,6 +30,25 @@ int main(void)
     printf("\n");
     printf("Init..\n");
 
+    queueType *temperature_values;
+    temperature_values = queue_create(5);
+
+    queue_enqueue(temperature_values, 25);
+    queue_enqueue(temperature_values, 27);
+    queue_enqueue(temperature_values, 28);
+    queue_enqueue(temperature_values, 24);
+
+    printf("Queue size: %d\n\r", queue_getSize(temperature_values));
+    printf("Front elem: %d\n\r", queue_getFrontElem(temperature_values));
+
+    printf("Dequeue elem: %d\n\r", queue_dequeue(temperature_values));
+    printf("Dequeue elem: %d\n\r", queue_dequeue(temperature_values));
+    printf("Dequeue elem: %d\n\r", queue_dequeue(temperature_values));
+
+    printf("\n\r");
+    printf("Queue size: %d\n\r", queue_getSize(temperature_values));
+    printf("Front elem: %d\n\r", queue_getFrontElem(temperature_values));
+
 
     while (1)
     {
@@ -91,7 +110,7 @@ void queue_enqueue(queueType *queue, int data)
     if(queue_isFull(queue))
     {
         // handle the error
-        print("Queue overflow\n\r");
+        printf("Queue overflow\n\r");
     }else
     {
         queue->rear = (queue->rear+1) % queue->capacity;
@@ -121,7 +140,7 @@ int queue_dequeue(queueType *queue)
         queue->size = 0;
     }else
     {
-        queue->front = (queue->front) % queue->capacity;
+        queue->front = (queue->front+1) % queue->capacity;
         queue->size -= 1;
     }
 

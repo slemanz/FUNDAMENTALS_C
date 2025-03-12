@@ -11,7 +11,4 @@ Can be classified into 4 types:
 3. Priority Queue
 4. Multiple Queue
 
-- Pushing an element onto the stack is like adding a new plate on top.
-- Popping an element removes the top plate from the stack.
-
 **[QUEUE IMPLEMENTATION](Src/queue.c)**
