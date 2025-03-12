@@ -6,3 +6,5 @@ A Stack is a linear data structure that follows a particular order in which the 
 - Popping an element removes the top plate from the stack.
 
 **[STACK IMPLEMENTATION](Src/stack.c)**
+
+**[LINKED LIST STACK IMPLEMENTATION](Src/ll_stack.c)**
