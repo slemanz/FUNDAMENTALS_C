@@ -20,6 +20,9 @@ int queue_getFrontElem(queueType *queue);
 int queue_getRearElem(queueType *queue);
 int queue_isEmpty(queueType *queue);
 int queue_isFull(queueType *queue);
+void queue_enqueue(queueType *queue, int data);
+int queue_dequeue(queueType *queue);
+void queue_delete(queueType *queue);
 
 int main(void)
 {
@@ -81,4 +84,59 @@ int queue_isEmpty(queueType *queue)
 int queue_isFull(queueType *queue)
 {
     return (queue->size == queue->capacity);
+}
+
+void queue_enqueue(queueType *queue, int data)
+{
+    if(queue_isFull(queue))
+    {
+        // handle the error
+        print("Queue overflow\n\r");
+    }else
+    {
+        queue->rear = (queue->rear+1) % queue->capacity;
+        queue->array[queue->rear] = data;
+        if(queue->front == -1)
+        {
+            queue->front = queue->rear;
+        }
+
+        queue->size += 1;
+    }
+}
+
+int queue_dequeue(queueType *queue)
+{
+    int data = -999;
+    if(queue_isEmpty(queue))
+    {
+        printf("Queue is empty\r\n");
+        return data;
+    }
+
+    data = queue->array[queue->front];
+    if(queue->front == queue->rear)
+    {
+        queue->front = queue->rear = -1;
+        queue->size = 0;
+    }else
+    {
+        queue->front = (queue->front) % queue->capacity;
+        queue->size -= 1;
+    }
+
+    return data;
+}
+
+void queue_delete(queueType *queue)
+{
+    if(queue)
+    {
+        if(queue->array)
+        {
+            free(queue->array);
+        }
+
+        free(queue);
+    }
 }
