@@ -13,3 +13,5 @@
 [6. Other Lists](other_lists/README.md)
 
 [7. Stack](stack/README.md)
+
+[8. Queue](queue/README.md)
