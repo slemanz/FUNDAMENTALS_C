@@ -11,6 +11,16 @@ struct Stack{
 
 typedef struct Stack stackType;
 
+stackType* stack_create(int capacity);
+void stack_double_size(stackType *stack);
+int stack_isFull(stackType *stack);
+int stack_isEmpty(stackType *stack);
+int stack_getSize(stackType *stack);
+void stack_push(stackType *stack, int data);
+int stack_pop(stackType *stack);
+int stack_peek(stackType *stack);
+void stack_delete(stackType *stack);
+
 int main(void)
 {
     system_init();
@@ -30,7 +40,7 @@ stackType* stack_create(int capacity)
     if(!stack)
     {
         printf("Not able to create stack!\n");
-        return;
+        return NULL;
     }
     stack->capacity = capacity;
     stack->top = -1;
@@ -62,7 +72,50 @@ int stack_isEmpty(stackType *stack)
     return (stack->top == -1);
 }
 
-void stack_push(stackType *stack)
+int stack_getSize(stackType *stack)
 {
+    return (stack->top + 1);
+}
 
+void stack_push(stackType *stack, int data)
+{
+    if(stack_isFull(stack))
+    {
+        stack_double_size(stack);
+    }
+
+    stack->array[++stack->top] = data;
+}
+
+int stack_pop(stackType *stack)
+{
+    if(stack_isEmpty(stack))
+    {
+        printf("Stack is empty");
+        return -999;
+    }
+    return (stack->array[stack->top--]);
+}
+
+int stack_peek(stackType *stack)
+{
+    if(stack_isEmpty(stack))
+    {
+        printf("Stack is empty");
+        return -999;
+    }
+    return (stack->array[stack->top]);
+}
+
+void stack_delete(stackType *stack)
+{
+    if(stack)
+    {
+        if(stack->array)
+        {
+            free(stack);
+        }
+
+        free(stack);
+    }
 }
