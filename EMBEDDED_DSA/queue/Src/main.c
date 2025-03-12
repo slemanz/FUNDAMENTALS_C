@@ -3,19 +3,15 @@
 #include <stdlib.h>
 #include "system.h"
 
+struct Queue{
+    int front;
+    int rear;
+    int capacity;
+    int size;
+    int *array;
+};
 
-typedef struct Stack stackType;
-
-struct Node{
-    int data;
-    struct Node *next;
-}*top = NULL;
-
-typedef struct Node nodeType;
-
-void ll_stack_push(int data);
-int ll_stack_pop(void);
-void ll_stack_print(void);
+typedef struct Queue queueType;
 
 int main(void)
 {
@@ -23,63 +19,33 @@ int main(void)
     printf("\n");
     printf("Init..\n");
 
-    ll_stack_push(7);
-    ll_stack_push(14);
-    ll_stack_push(21);
-    ll_stack_pop();
-    ll_stack_push(28);
-    ll_stack_print();
 
     while (1)
     {
     }
 }
 
-void ll_stack_push(int data)
+queueType *queue_create(int capacity)
 {
-    nodeType *newNode;
-    newNode = (nodeType *)malloc(sizeof(nodeType));
-
-    if(!newNode)
+    queueType *queue = malloc(sizeof(queueType));
+    if(!queue)
     {
-        printf("Stack error\n\r");
-    }else
-    {
-        newNode->data = data;
-        newNode->next = top;
-        top = newNode;
-    }
-}
-
-int ll_stack_pop(void)
-{
-    nodeType *temp;
-    int popped_data = -999;
-
-    if(top == NULL)
-    {
-        printf("Stack is empty\n\r");
-    }else
-    {
-        temp = top;
-        top = top->next;
-        popped_data = temp->data;
-
-        free(temp);
+        printf("Memory error\n\r");
+        return NULL;
     }
 
-    return popped_data;
-}
+    queue->capacity = capacity;
+    queue->front = -1;
+    queue->rear = -1;
+    queue->size = 0;
 
-void ll_stack_print(void)
-{
-    nodeType *temp;
-    temp = top;
-
-    while(temp != NULL)
+    queue->array = (int*)malloc(queue->capacity*sizeof(int));
+    if(!queue->array)
     {
-        printf("The stack element is %d\n\r", temp->data);
-        temp = temp->next;
+        printf("Memory error\n\r");
+        free(queue);
+        return NULL;
     }
-    printf("\r\n");
+
+    return queue;
 }
